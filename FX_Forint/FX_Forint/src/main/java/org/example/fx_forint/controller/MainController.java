@@ -1,4 +1,4 @@
-package org.example.fx_forint;
+package org.example.fx_forint.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
