@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.fx_forint.controller.MainController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Helloka!" onAction="#onHelloButtonClick"/>
-</VBox>
+<BorderPane fx:id="mainPane" prefHeight="640.0" prefWidth="1040.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.fx_forint.controller.MainController">
+  <top>
+    <MenuBar maxWidth="Infinity" prefHeight="25.0" prefWidth="1040.0">
+      <Menu text="Adatszolgáltatás">
+        <MenuItem onAction="#loadDbDataView" text="Megjelenítés" />
+        <MenuItem text="Keresés" />
+        <MenuItem text="Adatrögzítés" />
+        <MenuItem text="Adatmódosítás" />
+        <MenuItem text="Törlés" />
+      </Menu>
+      <Menu text="MNB adatszolgáltatás">
+        <MenuItem text="Letöltés" />
+        <MenuItem text="Részletes Letöltés" />
+        <MenuItem text="Grafikonos megjelenítés" />
+      </Menu>
+      <Menu text="Párhuzamos programvégrehajtás" />
+      <Menu text="Forex">
+        <MenuItem text="Számlainformációk" />
+        <MenuItem text="Aktuális árak" />
+        <MenuItem text="Historikus adatok" />
+        <MenuItem text="Pozíció nyitás" />
+        <MenuItem text="Pozíció zárás" />
+        <MenuItem text="Nyitott pozíciók" />
+      </Menu>
+    </MenuBar>
+  </top>
+  <center>
+    <StackPane fx:id="viewContainer" />
+  </center>
+</BorderPane>

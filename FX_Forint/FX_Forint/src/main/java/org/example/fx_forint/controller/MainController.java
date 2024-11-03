@@ -1,14 +1,28 @@
 package org.example.fx_forint.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.layout.StackPane;
+
+import java.io.IOException;
 
 public class MainController {
     @FXML
-    private Label welcomeText;
+    private StackPane viewContainer;
+
+    private void loadView(String fxmlFile) {
+        try {
+            Node view = FXMLLoader.load(getClass().getResource(fxmlFile));
+            viewContainer.getChildren().setAll(view);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    private void loadDbDataView() {
+        loadView("/org/example/fx_forint/allData-view.fxml");
     }
+
 }

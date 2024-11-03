@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.AllDataController">
+    <HBox maxHeight="Infinity" maxWidth="Infinity" spacing="10" style="-fx-padding: 10;">
+
+        <!-- Bal oldali panel a gombokkal -->
+        <VBox alignment="CENTER" prefHeight="659.0" prefWidth="110.0" spacing="10" style="-fx-background-color: #e0e0e0; -fx-padding: 10;">
+            <Button onAction="#loadAnyag" prefHeight="25.0" prefWidth="90.0" text="Anyag" />
+            <Button onAction="#loadAkod" prefWidth="90.0" text="Anyag-Érme" />
+            <Button onAction="#loadErme" prefWidth="90.0" text="Érme" />
+            <Button onAction="#loadTkod" prefWidth="90.0" text="Érme-Tervező" />
+            <Button onAction="#loadTervezo" prefWidth="90.0" text="Tervező" />
+        </VBox>
+
+        <TableView fx:id="dataTable" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Oszlop 1" />
+                <TableColumn text="Oszlop 2" />
+                <TableColumn text="Oszlop 3" />
+            </columns>
+        </TableView>
+
+    </HBox>
+</VBox>
