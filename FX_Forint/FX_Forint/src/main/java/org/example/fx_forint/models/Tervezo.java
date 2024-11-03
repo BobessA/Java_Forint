@@ -28,4 +28,10 @@ public class Tervezo {
     public void setNev(String nev) {
         this.nev = nev;
     }
+
+    // toString metódus felülírása
+    @Override
+    public String toString() {
+        return nev; // A nevét fogja visszaadni, így az lesz a megjelenített szöveg
+    }
 }

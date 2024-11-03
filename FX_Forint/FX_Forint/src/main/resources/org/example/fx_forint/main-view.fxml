@@ -7,8 +7,8 @@
   <top>
     <MenuBar maxWidth="Infinity" prefHeight="25.0" prefWidth="1040.0">
       <Menu text="Adatszolgáltatás">
-        <MenuItem onAction="#loadDbDataView" text="Megjelenítés" />
-        <MenuItem text="Keresés" />
+        <MenuItem onAction="#loadAllDataView" text="Megjelenítés" />
+        <MenuItem onAction="#loadSearchErmeView" text="Keresés" />
         <MenuItem text="Adatrögzítés" />
         <MenuItem text="Adatmódosítás" />
         <MenuItem text="Törlés" />

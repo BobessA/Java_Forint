@@ -21,8 +21,12 @@ public class MainController {
     }
 
     @FXML
-    private void loadDbDataView() {
+    private void loadAllDataView() {
         loadView("/org/example/fx_forint/allData-view.fxml");
     }
 
+    @FXML
+    private void loadSearchErmeView() {
+        loadView("/org/example/fx_forint/searchErme-view.fxml");
+    }
 }

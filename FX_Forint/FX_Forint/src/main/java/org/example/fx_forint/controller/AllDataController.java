@@ -147,6 +147,7 @@ public class AllDataController {
         ObservableList<Object> observableDetails = FXCollections.observableArrayList(details);
         dataTable.setItems(observableDetails);
     }
+
     private <T> List<T> getDetails(String sql, Class<T> model) {
         return databaseHelper.getRecords(sql, model);
     }
