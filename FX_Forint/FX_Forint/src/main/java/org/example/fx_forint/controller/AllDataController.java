@@ -3,15 +3,13 @@ package org.example.fx_forint.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.fx_forint.models.*;
 import org.example.fx_forint.helper.databaseHelper;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class AllDataController {
@@ -40,7 +38,7 @@ public class AllDataController {
 
         dataTable.getColumns().addAll(femid, femnev);
 
-        List<Anyag> details = getDetails("Select * from anyag", Anyag.class);
+        List<Anyag> details = databaseHelper.getRecords("Select * from anyag", Anyag.class);
 
         ObservableList<Object> observableDetails = FXCollections.observableArrayList(details);
         dataTable.setItems(observableDetails);
@@ -57,7 +55,7 @@ public class AllDataController {
 
         dataTable.getColumns().addAll(ermeid, femid);
 
-        List<Akod> details = getDetails("Select * from akod", Akod.class);
+        List<Akod> details = databaseHelper.getRecords("Select * from akod", Akod.class);
 
         ObservableList<Object> observableDetails = FXCollections.observableArrayList(details);
         dataTable.setItems(observableDetails);
@@ -74,7 +72,7 @@ public class AllDataController {
 
         dataTable.getColumns().addAll(femid, tervezoid);
 
-        List<Tkod> details = getDetails("Select * from tkod", Tkod.class);
+        List<Tkod> details = databaseHelper.getRecords("Select * from tkod", Tkod.class);
 
         ObservableList<Object> observableDetails = FXCollections.observableArrayList(details);
         dataTable.setItems(observableDetails);
@@ -91,7 +89,7 @@ public class AllDataController {
 
         dataTable.getColumns().addAll(tid, nev);
 
-        List<Tervezo> details = getDetails("Select * from tervezo", Tervezo.class);
+        List<Tervezo> details = databaseHelper.getRecords("Select * from tervezo", Tervezo.class);
 
         ObservableList<Object> observableDetails = FXCollections.observableArrayList(details);
         dataTable.setItems(observableDetails);
@@ -112,43 +110,18 @@ public class AllDataController {
         TableColumn<Object, Integer> darab = new TableColumn<>("Darab");
         darab.setCellValueFactory(new PropertyValueFactory<>("darab"));
 
-        TableColumn<Object, Date> kiadas = new TableColumn<>("Kiadás dátuma");
+        TableColumn<Object, LocalDate> kiadas = new TableColumn<>("Kiadás dátuma");
         kiadas.setCellValueFactory(new PropertyValueFactory<>("kiadas"));
-        kiadas.setCellFactory(column -> new TableCell<Object, Date>() {
-            @Override
-            protected void updateItem(Date item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText((new SimpleDateFormat("yyyy-MM-dd")).format(item));
-                }
-            }
-        });
 
-        TableColumn<Object, Date> bevonas = new TableColumn<>("Bevonás dátuma");
+        TableColumn<Object, LocalDate> bevonas = new TableColumn<>("Bevonás dátuma");
         bevonas.setCellValueFactory(new PropertyValueFactory<>("bevonas"));
-        bevonas.setCellFactory(column -> new TableCell<Object, Date>() {
-            @Override
-            protected void updateItem(Date item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText((new SimpleDateFormat("yyyy-MM-dd")).format(item));
-                }
-            }
-        });
 
         dataTable.getColumns().addAll(ermeid, cimlet, tomeg, darab, kiadas, bevonas);
 
-        List<Erme> details = getDetails("Select * from erme", Erme.class);
+        List<Erme> details = databaseHelper.getRecords("Select * from erme", Erme.class);
 
         ObservableList<Object> observableDetails = FXCollections.observableArrayList(details);
         dataTable.setItems(observableDetails);
     }
 
-    private <T> List<T> getDetails(String sql, Class<T> model) {
-        return databaseHelper.getRecords(sql, model);
-    }
 }

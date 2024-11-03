@@ -1,6 +1,6 @@
 package org.example.fx_forint.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Erme {
 
@@ -8,12 +8,12 @@ public class Erme {
     private int cimlet;
     private double tomeg;
     private int darab;
-    private Date kiadas;
-    private Date bevonas;
+    private LocalDate kiadas;
+    private LocalDate bevonas;
     public Erme() {
     }
 
-    public Erme(int cimlet, double tomeg, int darab, Date kiadas, Date bevonas) {
+    public Erme(int cimlet, double tomeg, int darab, LocalDate kiadas, LocalDate bevonas) {
         this.cimlet = cimlet;
         this.tomeg = tomeg;
         this.darab = darab;
@@ -53,19 +53,19 @@ public class Erme {
         this.darab = darab;
     }
 
-    public Date getKiadas() {
+    public LocalDate getKiadas() {
         return kiadas;
     }
 
-    public void setKiadas(Date kiadas) {
+    public void setKiadas(LocalDate kiadas) {
         this.kiadas = kiadas;
     }
 
-    public Date getBevonas() {
+    public LocalDate getBevonas() {
         return bevonas;
     }
 
-    public void setBevonas(Date bevonas) {
+    public void setBevonas(LocalDate bevonas) {
         this.bevonas = bevonas;
     }
 }

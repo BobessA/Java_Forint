@@ -9,9 +9,9 @@
       <Menu text="Adatszolgáltatás">
         <MenuItem onAction="#loadAllDataView" text="Megjelenítés" />
         <MenuItem onAction="#loadSearchErmeView" text="Keresés" />
-        <MenuItem text="Adatrögzítés" />
-        <MenuItem text="Adatmódosítás" />
-        <MenuItem text="Törlés" />
+        <MenuItem onAction="#loadNewErmeView" text="Adatrögzítés" />
+        <MenuItem onAction="#loadModifiedErmeView" text="Adatmódosítás" />
+        <MenuItem onAction="#loadDeleteErmeView" text="Törlés" />
       </Menu>
       <Menu text="MNB adatszolgáltatás">
         <MenuItem text="Letöltés" />

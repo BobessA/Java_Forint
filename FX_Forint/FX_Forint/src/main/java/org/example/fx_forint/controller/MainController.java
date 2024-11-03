@@ -29,4 +29,19 @@ public class MainController {
     private void loadSearchErmeView() {
         loadView("/org/example/fx_forint/searchErme-view.fxml");
     }
+
+    @FXML
+    private void loadNewErmeView() {
+        loadView("/org/example/fx_forint/newErme-view.fxml");
+    }
+
+    @FXML
+    private void loadModifiedErmeView() {
+        loadView("/org/example/fx_forint/modifiedErme-view.fxml");
+    }
+
+    @FXML
+    private void loadDeleteErmeView() {
+        loadView("/org/example/fx_forint/deleteErme-view.fxml");
+    }
 }

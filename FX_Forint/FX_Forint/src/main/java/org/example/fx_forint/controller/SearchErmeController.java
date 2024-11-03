@@ -9,10 +9,12 @@ import org.example.fx_forint.helper.databaseHelper;
 import org.example.fx_forint.models.Erme;
 import org.example.fx_forint.models.Tervezo;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.example.fx_forint.helper.Utils.isInteger;
+import static org.example.fx_forint.helper.Utils.showMessage;
 
 public class SearchErmeController {
 
@@ -46,8 +48,6 @@ public class SearchErmeController {
     @FXML
     private TableColumn<Erme, Date> bevonas;
 
-    private ObservableList<Erme> ermeList;
-
     @FXML
     private TextField tfCimlet;
     @FXML
@@ -67,8 +67,6 @@ public class SearchErmeController {
 
         loadErme("Select * from Erme");
         loadCbItems();
-
-
     }
 
     @FXML
@@ -81,39 +79,17 @@ public class SearchErmeController {
         tomeg.setCellValueFactory(new PropertyValueFactory<>("tomeg"));
         darab.setCellValueFactory(new PropertyValueFactory<>("darab"));
         kiadas.setCellValueFactory(new PropertyValueFactory<>("kiadas"));
-        kiadas.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Date item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText((new SimpleDateFormat("yyyy-MM-dd")).format(item));
-                }
-            }
-        });
         bevonas.setCellValueFactory(new PropertyValueFactory<>("bevonas"));
-        bevonas.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Date item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText((new SimpleDateFormat("yyyy-MM-dd")).format(item));
-                }
-            }
-        });
 
-        List<Erme> details = getDetails(sql, Erme.class);
+        List<Erme> details = databaseHelper.getRecords(sql, Erme.class);
 
-        ermeList = FXCollections.observableList(details);
+        ObservableList<Erme> ermeList = FXCollections.observableList(details);
         ermeTable.setItems(ermeList);
     }
 
     @FXML
     private void loadCbItems() {
-        List<Tervezo> tervezok = getDetails("Select * from tervezo", Tervezo.class);
+        List<Tervezo> tervezok = databaseHelper.getRecords("Select * from tervezo", Tervezo.class);
         ObservableList<Tervezo> observableTervezok = FXCollections.observableArrayList(tervezok);
 
         cbTervezo.setItems(observableTervezok);
@@ -137,16 +113,11 @@ public class SearchErmeController {
         String sql = "Select * from Erme";
 
         String cimletValue = tfCimlet.getText();
-        if (tfCimlet.getText() !=  "") {
-            try {
-                int numb = Integer.parseInt(cimletValue);
+        if (cimletValue != "") {
+            if (isInteger(cimletValue)) {
                 filters.add("cimlet=" + cimletValue);
-            } catch (NumberFormatException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Hibás érték");
-                alert.setHeaderText(null);
-                alert.setContentText("A megadott címlet nem szám érték, módosítsa az értéket.");
-                alert.showAndWait();
+            } else {
+                showMessage(Alert.AlertType.ERROR,"A megadott címlet nem szám érték, módosítsa az értéket.","Hibás érték");
                 return;
             }
         }
@@ -185,7 +156,4 @@ public class SearchErmeController {
         toggleGroup.selectToggle(null);
     }
 
-    private <T> List<T> getDetails(String sql, Class<T> model) {
-        return databaseHelper.getRecords(sql, model);
-    }
 }

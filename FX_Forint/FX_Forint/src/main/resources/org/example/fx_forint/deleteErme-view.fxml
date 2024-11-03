@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.DeleteErmeController">
+    <HBox maxHeight="Infinity" maxWidth="Infinity" spacing="10" style="-fx-padding: 10;">
+
+        <!-- Bal oldali panel a gombokkal -->
+        <VBox alignment="TOP_LEFT" prefHeight="659.0" prefWidth="267.0" spacing="10" style="-fx-background-color: #e0e0e0; -fx-padding: 10;" BorderPane.alignment="CENTER">
+            <Label text="Érme törlése" />
+            <Label text="Érme azonosító" />
+            <ComboBox prefWidth="150.0" fx:id="cbErmeid"/>
+
+            <Label text="Erősítse meg hogy biztosan törli a kiválasztott érmét!" />
+            <Label text="Adja meg a következő szöveget: Érme Törlése!" />
+            <TextField fx:id="tfConfirm" />
+
+            <Button onAction="#deleteErme" prefWidth="90.0" text="Mentés" />
+        </VBox>
+
+    </HBox>
+</VBox>

@@ -3,26 +3,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.SearchErmeController">
+<VBox alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.ModifiedErmeController">
     <HBox maxHeight="Infinity" maxWidth="Infinity" spacing="10" style="-fx-padding: 10;">
 
         <!-- Bal oldali panel a gombokkal -->
         <VBox alignment="TOP_LEFT" prefHeight="659.0" prefWidth="267.0" spacing="10" style="-fx-background-color: #e0e0e0; -fx-padding: 10;" BorderPane.alignment="CENTER">
-            <Label text="Tervező" />
-            <ComboBox fx:id="cbTervezo" prefWidth="150.0" />
+            <Label text="Érme módosítása" />
+            <Label text="Érme azonosító" />
+            <ComboBox prefWidth="150.0" fx:id="cbErmeid"/>
+
             <Label text="Címlet" />
             <TextField fx:id="tfCimlet" />
-            <CheckBox fx:id="chbBevonas" mnemonicParsing="false" text="Csak a nem bevontakat mutasd" />
-            <Label text="Anyag" />
 
-            <RadioButton fx:id="radio1" mnemonicParsing="false" text="Ezüst" />
-            <RadioButton fx:id="radio2" mnemonicParsing="false" text="Réz" />
-            <RadioButton fx:id="radio3" mnemonicParsing="false" text="Nikkel" />
-            <RadioButton fx:id="radio4" mnemonicParsing="false" text="Cink" />
-            <RadioButton fx:id="radio5" mnemonicParsing="false" text="Alumínium" />
-            <RadioButton fx:id="radio6" mnemonicParsing="false" text="Ón" />
+            <Label text="Tömeg" />
+            <TextField fx:id="tfTomeg" />
 
-            <Button onAction="#setFilter" prefWidth="90.0" text="Szűrés" />
+            <Label text="Darab" />
+            <TextField fx:id="tfDarab" />
+
+            <Label text="Kiadás dátuma" />
+            <DatePicker fx:id="dpKezd" />
+
+            <Label text="Tervezett bevonás" />
+            <DatePicker fx:id="dpBevonas" />
+
+            <Button onAction="#modifiedErme" prefWidth="90.0" text="Módosítás" />
         </VBox>
 
         <TableView fx:id="ermeTable" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">

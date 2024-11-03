@@ -3,6 +3,8 @@ package org.example.fx_forint.helper;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +34,12 @@ public class databaseHelper {
      * Adatbázis insert a paraméterben megadott sql-el
      * @param sql
      */
-    public static void insertData(String sql) {
+    public static void executeSql(String sql) {
         try (Connection connection = connect();
              Statement stmt = connection.createStatement()) {
             if (connection != null) {
                 stmt.executeUpdate(sql);
-                System.out.println("Inserted");
+                System.out.println("Successful");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -60,7 +62,7 @@ public class databaseHelper {
              Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             if (connection != null) {
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 ResultSetMetaData metaData = rs.getMetaData();
                 int columnCount = metaData.getColumnCount();
 
@@ -75,9 +77,8 @@ public class databaseHelper {
                             Field field = modelT.getDeclaredField(columnName);
                             field.setAccessible(true);
                             //System.out.println("A " + field.getName() + " mezo tipusa: " + field.getType());
-                            if (field.getType() == java.util.Date.class && value != null) {
-                                value = formatter.parse((String) value);
-                                //System.out.println("formazva: " + (new SimpleDateFormat("yyyy-MM-dd")).format(value));
+                            if (field.getType() == java.time.LocalDate.class && value != null) {
+                                value = LocalDate.parse(value.toString(), formatter);
                             }
 
                             field.set(model, value);
