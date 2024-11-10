@@ -52,6 +52,18 @@ public class ModifiedErmeController {
         cbErmeid.setVisibleRowCount(5);
         dpKezd.getEditor().addEventFilter(KeyEvent.KEY_TYPED, event -> event.consume());
         dpBevonas.getEditor().addEventFilter(KeyEvent.KEY_TYPED, event -> event.consume());
+
+        Tooltip tableTooltip = new Tooltip("Dupla kattintásra kiválasztható a szerkesztendő adatsor.");
+        ermeTable.setTooltip(tableTooltip);
+
+        ermeTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Erme selectedErme = ermeTable.getSelectionModel().getSelectedItem();
+                if (selectedErme != null) {
+                    loadErmeDetailsToForm(selectedErme);
+                }
+            }
+        });
     }
 
     @FXML
@@ -125,6 +137,15 @@ public class ModifiedErmeController {
         List<Integer> ermeIds = details.stream().map(Erme::getErmeid).collect(Collectors.toList());
         ObservableList<Integer> observableErmeids = FXCollections.observableArrayList(ermeIds);
         cbErmeid.setItems(observableErmeids);
+    }
+
+    private void loadErmeDetailsToForm(Erme erme) {
+        cbErmeid.setValue(erme.getErmeid());
+        tfCimlet.setText(String.valueOf(erme.getCimlet()));
+        tfTomeg.setText(String.valueOf(erme.getTomeg()));
+        tfDarab.setText(String.valueOf(erme.getDarab()));
+        dpKezd.setValue(erme.getKiadas());
+        dpBevonas.setValue(erme.getBevonas());
     }
 
     private void controlsReset() {

@@ -23,6 +23,9 @@
             <RadioButton fx:id="radio6" mnemonicParsing="false" text="Ón" />
 
             <Button onAction="#setFilter" prefWidth="90.0" text="Szűrés" />
+         <Separator prefWidth="200.0" />
+         <Label text="A táblázat jelenlegi szűrőfeltételei" />
+         <TextArea fx:id="taDescription" editable="false" prefHeight="200.0" prefWidth="200.0" />
         </VBox>
 
         <TableView fx:id="ermeTable" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">

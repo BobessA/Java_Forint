@@ -56,6 +56,9 @@ public class SearchErmeController {
     private ComboBox<Tervezo> cbTervezo;
 
     @FXML
+    private TextArea taDescription;
+
+    @FXML
     public void initialize() {
         toggleGroup = new ToggleGroup();
         radio1.setToggleGroup(toggleGroup);
@@ -111,11 +114,13 @@ public class SearchErmeController {
     private void setFilter() {
         List<String> filters = new ArrayList<>();
         String sql = "Select * from Erme";
+        String description = "";
 
         String cimletValue = tfCimlet.getText();
         if (cimletValue != "") {
             if (isInteger(cimletValue)) {
                 filters.add("cimlet=" + cimletValue);
+                description += "Címlet = " + cimletValue +"\n";
             } else {
                 showMessage(Alert.AlertType.ERROR,"A megadott címlet nem szám érték, módosítsa az értéket.","Hibás érték");
                 return;
@@ -124,16 +129,19 @@ public class SearchErmeController {
 
         if (chbBevonas.isSelected()) {
             filters.add("bevonas is null");
+            description += "Nem bevont érmék \n";
         }
 
         //System.out.println("a kivalasztott tervezo: " + cbTervezo.getValue());
         if (cbTervezo.getValue() != null) {
             filters.add("exists (select 1 from tkod where tkod.ermeid=erme.ermeid and tervezoid="+ cbTervezo.valueProperty().get().tid +")");
+            description += "Tervező = " + cbTervezo.getValue() +" \n";
         }
 
         RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
         if (selectedRadioButton != null && selectedRadioButton.getId() != null) {
             filters.add("exists (select 1 from akod where akod.ermeid=erme.ermeid and femid=" + (selectedRadioButton.getId()).replace("radio","") + ")");
+            description += "Anyaga = " + selectedRadioButton.getText() + "\n";
         }
 
         for(int i = 0; i<filters.size(); i++) {
@@ -146,6 +154,7 @@ public class SearchErmeController {
         System.out.println(sql);
 
         loadErme(sql);
+        taDescription.setText(description);
         controlsReset();
     }
 
