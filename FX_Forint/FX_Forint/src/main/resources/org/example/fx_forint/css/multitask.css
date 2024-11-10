@@ -1,0 +1,26 @@
+/* Alapértelmezett beállítások az összes címkéhez */
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Specifikus stílus a timeLabel1 és timeLabel2 elemekhez */
+#timeLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4CAF50;
+}
+
+/* A gomb stílusai */
+#startButton {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+#startButton:hover {
+    -fx-background-color: #0056b3;
+}

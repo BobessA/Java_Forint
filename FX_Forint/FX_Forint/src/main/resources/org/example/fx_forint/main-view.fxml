@@ -18,7 +18,9 @@
         <MenuItem text="Részletes Letöltés" />
         <MenuItem text="Grafikonos megjelenítés" />
       </Menu>
-      <Menu text="Párhuzamos programvégrehajtás" />
+      <Menu onAction="#loadMultitaskView" text="Párhuzamos programvégrehajtás">
+      <MenuItem onAction="#loadMultitaskView" text="Párhuzamos programvégrehajtás" />
+      </Menu>
       <Menu text="Forex">
         <MenuItem text="Számlainformációk" />
         <MenuItem text="Aktuális árak" />

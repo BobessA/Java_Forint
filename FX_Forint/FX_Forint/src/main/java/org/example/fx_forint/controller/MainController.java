@@ -44,4 +44,7 @@ public class MainController {
     private void loadDeleteErmeView() {
         loadView("/org/example/fx_forint/deleteErme-view.fxml");
     }
+
+    @FXML
+    private void loadMultitaskView() {loadView("/org/example/fx_forint/multitask-view.fxml"); }
 }
