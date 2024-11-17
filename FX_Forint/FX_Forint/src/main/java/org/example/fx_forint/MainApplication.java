@@ -12,7 +12,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        setDbFilePath("jdbc:sqlite:../../database/database.db");
+        setDbFilePath("jdbc:sqlite:C:\\adatok\\adatok.db");
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1040, 600);

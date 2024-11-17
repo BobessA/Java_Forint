@@ -4,7 +4,6 @@ import org.example.fx_forint.models.Deviza;
 
 import java.lang.reflect.Field;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
