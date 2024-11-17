@@ -12,12 +12,14 @@ import org.example.fx_forint.models.Deviza;
 import org.example.fx_forint.models.Params;
 import org.w3c.dom.Document;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import static org.example.fx_forint.helper.MNBSoapClientHelper.formatExchangeResult;
 import static org.example.fx_forint.helper.Utils.showMessage;
 
 public class DownloadMNBExchangesController {
@@ -64,10 +66,14 @@ public class DownloadMNBExchangesController {
 
     private void saveExchangesToFile(File file) {
         try (BufferedWriter writer = Files.newBufferedWriter(file.toPath())) {
-            writer.write(soapHelper.getCurrentExchangeRates());
+            String response = soapHelper.getCurrentExchangeRates();
+            String formattedResponse = formatExchangeResult(response);
+            writer.write(formattedResponse);
             System.out.println("Árfolyamok mentve a fájlba: " + file.getAbsolutePath());
         } catch (IOException e) {
             System.err.println("Hiba a fájl mentésekor: " + e.getMessage());
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
         }
     }
 
