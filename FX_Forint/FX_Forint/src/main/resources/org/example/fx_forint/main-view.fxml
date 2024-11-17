@@ -14,7 +14,7 @@
         <MenuItem onAction="#loadDeleteErmeView" text="Törlés" />
       </Menu>
       <Menu text="MNB adatszolgáltatás">
-        <MenuItem text="Letöltés" />
+        <MenuItem onAction="#loadMNBDataToFile" text="Letöltés" />
         <MenuItem text="Részletes Letöltés" />
         <MenuItem text="Grafikonos megjelenítés" />
       </Menu>

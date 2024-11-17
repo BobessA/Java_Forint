@@ -185,3 +185,14 @@ INSERT INTO tkod (ermeid, tervezoid) VALUES
 (21, 3),
 (22, 2),
 (23, 1);
+
+-- --------------------------------------------------------
+
+CREATE TABLE deviza (
+  devizanem TEXT PRIMARY KEY
+);
+
+CREATE TABLE params (
+  param_name TEXT PRIMARY KEY,
+  param_value TEXT
+);

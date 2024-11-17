@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.DownloadMNBExchangesController">
+    <HBox maxHeight="Infinity" maxWidth="Infinity" spacing="10" style="-fx-padding: 10;">
+
+        <!-- Bal oldali panel a gombokkal -->
+        <VBox alignment="TOP_LEFT" prefHeight="659.0" prefWidth="267.0" spacing="10" style="-fx-background-color: #e0e0e0; -fx-padding: 10;" BorderPane.alignment="CENTER">
+            <Label prefHeight="55.0" prefWidth="247.0" text="Ez a funkció letölti az aktuális árfolyamokat&#10;az MNB szerveréről, és elmenti egy fájlba." />
+
+            <Button onAction="#saveMNBDataToFile" prefWidth="90.0" text="Letöltés" />
+         <Label fx:id="resultText" text="" />
+        </VBox>
+
+    </HBox>
+</VBox>

@@ -47,4 +47,8 @@ public class MainController {
 
     @FXML
     private void loadMultitaskView() {loadView("/org/example/fx_forint/multitask-view.fxml"); }
+
+    @FXML
+    private void loadMNBDataToFile() {loadView("/org/example/fx_forint/downloadMNBExchanges-view.fxml");}
+
 }
