@@ -1,5 +1,7 @@
 package org.example.fx_forint.helper;
 
+import org.example.fx_forint.models.Deviza;
+
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -95,5 +97,24 @@ public class databaseHelper {
             System.out.println(e.getMessage());
         }
         return list;
+    }
+
+    /**
+     * Az elérhető devizanemek adatbázisba mentése
+     * @param currencies Deviza lista
+     */
+    public static void saveCurrency(List<Deviza> currencies) {
+        String sql = "INSERT into deviza (devizanem) select (?) where not exists (select 1 from deviza where devizanem=?)";
+
+        try (Connection connection = connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            for (Deviza currency : currencies) {
+                stmt.setString(1, currency.getDevizanem());
+                stmt.setString(2, currency.getDevizanem());
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

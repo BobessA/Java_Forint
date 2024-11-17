@@ -6,13 +6,17 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.fx_forint.helper.MNBSoapClientHelper;
+import org.example.fx_forint.helper.databaseHelper;
 import org.example.fx_forint.config.AppConfig;
+import org.example.fx_forint.models.Deviza;
 import org.example.fx_forint.models.Params;
+import org.w3c.dom.Document;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 
 import static org.example.fx_forint.helper.Utils.showMessage;
 
@@ -30,7 +34,6 @@ public class DownloadMNBExchangesController {
 
     @FXML
     private void saveMNBDataToFile() {
-
         soapHelper = new MNBSoapClientHelper();
         System.out.println(soapHelper.getCurrentExchangeRates());
 
@@ -52,7 +55,11 @@ public class DownloadMNBExchangesController {
             showMessage(Alert.AlertType.ERROR, "A fájl mentése sikertelen.","Hiba");
         }
 
-
+        try {
+            saveCurrenciesToDB();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void saveExchangesToFile(File file) {
@@ -62,5 +69,11 @@ public class DownloadMNBExchangesController {
         } catch (IOException e) {
             System.err.println("Hiba a fájl mentésekor: " + e.getMessage());
         }
+    }
+
+    private void saveCurrenciesToDB() throws Exception {
+        String currencies = soapHelper.getInfo();
+        List<Deviza> CurrenciesList = soapHelper.parseDevizaFromXML(currencies);
+        databaseHelper.saveCurrency(CurrenciesList);
     }
 }
