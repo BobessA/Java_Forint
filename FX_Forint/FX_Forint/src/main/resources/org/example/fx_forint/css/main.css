@@ -1,0 +1,202 @@
+/* Globális beállítások */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    /*-fx-padding: 10px;*/
+}
+
+
+VBox {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #ced4da;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+
+.ComboBox, .TextField {
+    -fx-max-width: 300px;
+}
+/* Hint text */
+.hint-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6c757d;
+}
+/* Gombok */
+.btn {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-border-color: transparent;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 4, 0.3, 0, 2);
+}
+
+.btn:hover {
+    -fx-background-color: #0056b3;
+}
+
+.btn:pressed {
+    -fx-background-color: #004085;
+    -fx-effect: none;
+}
+
+/* Színezett gombok */
+.btn-primary {
+    -fx-background-color: #007bff;
+}
+
+.btn-secondary {
+    -fx-background-color: #6c757d;
+}
+
+.btn-success {
+    -fx-background-color: #28a745;
+}
+
+.btn-danger {
+    -fx-background-color: #dc3545;
+}
+
+.btn-warning {
+    -fx-background-color: #ffc107;
+}
+
+.btn-info {
+    -fx-background-color: #17a2b8;
+}
+
+/* Színezett gombok hover állapota */
+.btn-primary:hover {
+    -fx-background-color: #0056b3;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #c82333;
+}
+
+.btn-success:hover {
+    -fx-background-color: #218838;
+}
+
+/* Címkék */
+.label {
+    -fx-padding: 4px 8px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.label-primary {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.label-success {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+}
+
+.label-danger {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+}
+
+.label-warning {
+    -fx-background-color: #ffc107;
+    -fx-text-fill: black;
+}
+
+/* Panelek */
+.panel {
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 4px;
+   /* -fx-padding: 10px;*/
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0.3, 0, 2);
+}
+
+.panel-primary {
+    -fx-border-color: #007bff;
+    -fx-background-color: #cce5ff;
+}
+
+.panel-success {
+    -fx-border-color: #28a745;
+    -fx-background-color: #d4edda;
+}
+
+.panel-danger {
+    -fx-border-color: #dc3545;
+    -fx-background-color: #f8d7da;
+}
+
+.panel-warning {
+    -fx-border-color: #ffc107;
+    -fx-background-color: #fff3cd;
+}
+
+/* Szövegek */
+.text-primary {
+    -fx-text-fill: #007bff;
+}
+
+.text-success {
+    -fx-text-fill: #28a745;
+}
+
+.text-danger {
+    -fx-text-fill: #dc3545;
+}
+
+.text-warning {
+    -fx-text-fill: #ffc107;
+}
+
+.text-muted {
+    -fx-text-fill: #6c757d;
+}
+
+/* Táblázatok */
+.table {
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+    -fx-background-color: #f8f9fa;
+    -fx-border-radius: 4px;
+}
+
+.table-row {
+    -fx-border-color: #ddd;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.table-row:hover {
+    -fx-background-color: #f1f1f1;
+}
+
+.header-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #343a40;
+    -fx-padding: 10 0 20 0;
+}
+
+.form-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #495057;
+    -fx-font-weight: bold;
+}
+.VBox {
+    -fx-alignment: CENTER;
+}
+
+.VBox > * {
+    -fx-alignment: CENTER;
+    -fx-max-width: 300px;
+}

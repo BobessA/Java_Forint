@@ -3,6 +3,7 @@ package org.example.fx_forint.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -13,7 +14,15 @@ public class MainController {
 
     private void loadView(String fxmlFile) {
         try {
-            Node view = FXMLLoader.load(getClass().getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Node view = loader.load();
+
+            // Stíluslap hozzáadása a betöltött nézethez
+            if (view instanceof Parent) {
+                Parent root = (Parent) view;
+                root.getStylesheets().add(getClass().getResource("/org/example/fx_forint/css/main.css").toExternalForm());
+            }
+
             viewContainer.getChildren().setAll(view);
         } catch (IOException e) {
             e.printStackTrace();

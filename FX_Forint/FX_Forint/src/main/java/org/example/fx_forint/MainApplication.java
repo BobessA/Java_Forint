@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+
 import static org.example.fx_forint.helper.databaseHelper.setDbFilePath;
 
 public class MainApplication extends Application {
@@ -16,6 +18,7 @@ public class MainApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1040, 600);
+        scene.getStylesheets().add(getClass().getResource("/org/example/fx_forint/css/main.css").toExternalForm());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
