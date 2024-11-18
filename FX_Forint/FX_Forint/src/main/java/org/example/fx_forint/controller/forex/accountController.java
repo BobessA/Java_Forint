@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import com.oanda.v20.account.AccountID;
 import com.oanda.v20.account.AccountSummary;
 import com.oanda.v20.Context;
+import org.example.fx_forint.config.AppConfig;
 
 public class accountController {
 
@@ -17,11 +18,11 @@ public class accountController {
         try {
             // OANDA API Kapcsolat
             Context ctx = new Context(
-                    "https://api-fxpractice.oanda.com",
-                    "2fa4230ddce6e98c07ae73bbeff59c49-8c302df73327ed59bde384a7c9dcb847"
+                    AppConfig.FOREX_API_URL,
+                    AppConfig.FOREX_API_TOKEN
             );
             AccountSummary summary = ctx.account.summary(
-                    new AccountID("101-004-30380107-001")
+                    new AccountID(AppConfig.FOREX_API_ACCOUNTID)
             ).getAccount();
 
             // Az adatok hozzáadása a GridPane-hez

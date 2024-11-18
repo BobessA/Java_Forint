@@ -160,6 +160,7 @@ public class AccountSummary {
      * <p>
      * The home currency of the Account
      * <p>
+     *
      * @return the Home Currency
      * @see Currency
      */

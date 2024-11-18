@@ -23,7 +23,7 @@
       </Menu>
       <Menu text="Forex">
         <MenuItem onAction="#loadForexAccountInformations" text="Számlainformációk" />
-        <MenuItem text="Aktuális árak" />
+        <MenuItem onAction="#loadForexActualPrices" text="Aktuális árak" />
         <MenuItem text="Historikus adatok" />
         <MenuItem text="Pozíció nyitás" />
         <MenuItem text="Pozíció zárás" />
