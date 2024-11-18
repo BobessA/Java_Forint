@@ -28,5 +28,7 @@ module org.example.fx_forint {
     exports com.oanda.v20.primitives;
     exports com.oanda.v20.transaction;
     opens soap to com.sun.xml.bind, com.sun.xml.ws;
+    opens org.example.fx_forint.controller.forex to javafx.fxml;
+
     //opens org.example.fx_forint to javafx.fxml, com.sun.xml.bind;
 }

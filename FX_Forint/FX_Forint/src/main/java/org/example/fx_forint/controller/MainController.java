@@ -59,5 +59,7 @@ public class MainController {
 
     @FXML
     private void loadMNBDataToFile() {loadView("/org/example/fx_forint/downloadMNBExchanges-view.fxml");}
+    @FXML
+    private void loadForexAccountInformations() {loadView("/org/example/fx_forint/forex/account.fxml");}
 
 }

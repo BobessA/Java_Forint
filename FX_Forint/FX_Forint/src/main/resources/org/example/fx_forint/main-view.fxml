@@ -22,7 +22,7 @@
       <MenuItem onAction="#loadMultitaskView" text="Párhuzamos programvégrehajtás" />
       </Menu>
       <Menu text="Forex">
-        <MenuItem text="Számlainformációk" />
+        <MenuItem onAction="#loadForexAccountInformations" text="Számlainformációk" />
         <MenuItem text="Aktuális árak" />
         <MenuItem text="Historikus adatok" />
         <MenuItem text="Pozíció nyitás" />
