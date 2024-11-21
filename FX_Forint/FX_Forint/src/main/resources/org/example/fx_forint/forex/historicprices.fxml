@@ -2,11 +2,13 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
 
 <VBox alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="640.0" spacing="20.0"
       xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.fx_forint.controller.forex.HistoricPrices">
 
+    <ComboBox fx:id="instrumentComboBox" prefWidth="200" />
 
     <TableView fx:id="candleTable">
         <columns>
@@ -14,6 +16,6 @@
             <TableColumn fx:id="closeColumn" text="Close Price" prefWidth="200" />
         </columns>
     </TableView>
-    <Button text="Frissítés" onAction="#onLoadHistoricPricesButtonClicked" />
 
+    <Button text="Frissítés" onAction="#onLoadHistoricPricesButtonClicked" />
 </VBox>

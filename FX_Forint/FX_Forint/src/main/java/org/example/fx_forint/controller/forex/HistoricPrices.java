@@ -2,6 +2,8 @@ package org.example.fx_forint.controller.forex;
 
 import com.oanda.v20.ContextBuilder;
 import com.oanda.v20.Context;
+import com.oanda.v20.account.AccountInstrumentsRequest;
+import com.oanda.v20.account.AccountInstrumentsResponse;
 import com.oanda.v20.instrument.Candlestick;
 import com.oanda.v20.instrument.InstrumentCandlesRequest;
 import com.oanda.v20.instrument.InstrumentCandlesResponse;
@@ -9,12 +11,17 @@ import com.oanda.v20.primitives.InstrumentName;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.fx_forint.config.AppConfig;
+
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.oanda.v20.instrument.CandlestickGranularity.H1;
 
 public class HistoricPrices {
@@ -27,6 +34,13 @@ public class HistoricPrices {
 
     @FXML
     private TableColumn<CandleData, String> closeColumn;
+
+    @FXML
+    private ComboBox<String> instrumentComboBox; // ComboBox hozzáadása
+
+    private ObservableList<String> instruments;
+
+    private Context ctx;
 
     public static class CandleData {
         private final String time;
@@ -47,14 +61,40 @@ public class HistoricPrices {
     }
 
     @FXML
-    protected void onLoadHistoricPricesButtonClicked() {
+    public void initialize() {
         try {
-            Context ctx = new ContextBuilder(AppConfig.FOREX_API_URL)
+            ctx = new ContextBuilder(AppConfig.FOREX_API_URL)
                     .setToken(AppConfig.FOREX_API_TOKEN)
                     .setApplication("HistorikusAdatok")
                     .build();
 
-            InstrumentCandlesRequest request = new InstrumentCandlesRequest(new InstrumentName("EUR_USD"));
+            AccountInstrumentsRequest instrumentsRequest = new AccountInstrumentsRequest(AppConfig.FOREX_API_ACCOUNTID);
+            AccountInstrumentsResponse instrumentsResponse = ctx.account.instruments(instrumentsRequest);
+
+            instruments = FXCollections.observableArrayList(
+                    instrumentsResponse.getInstruments()
+                            .stream()
+                            .map(instrument -> instrument.getName().toString())
+                            .collect(Collectors.toList())
+            );
+
+            instrumentComboBox.setItems(instruments);
+            instrumentComboBox.getSelectionModel().selectFirst();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onLoadHistoricPricesButtonClicked() {
+        try {
+
+            String selectedInstrument = instrumentComboBox.getValue();
+            if (selectedInstrument == null) {
+                return;
+            }
+
+            InstrumentCandlesRequest request = new InstrumentCandlesRequest(new InstrumentName(selectedInstrument));
             request.setGranularity(H1);
             request.setCount(10L);
 
