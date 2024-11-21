@@ -24,10 +24,10 @@
       <Menu text="Forex">
         <MenuItem onAction="#loadForexAccountInformations" text="Számlainformációk" />
         <MenuItem onAction="#loadForexActualPrices" text="Aktuális árak" />
-        <MenuItem text="Historikus adatok" />
-        <MenuItem text="Pozíció nyitás" />
-        <MenuItem text="Pozíció zárás" />
-        <MenuItem text="Nyitott pozíciók" />
+        <MenuItem onAction="#loadForexHistoricPrices" text="Historikus adatok" />
+        <MenuItem onAction="#loadForexOpenTrade" text="Pozíció nyitás" />
+        <MenuItem onAction="#loadForexCloseTrade"  text="Pozíció zárás" />
+        <MenuItem onAction="#loadForexActiveTrades" text="Nyitott pozíciók" />
       </Menu>
     </MenuBar>
   </top>

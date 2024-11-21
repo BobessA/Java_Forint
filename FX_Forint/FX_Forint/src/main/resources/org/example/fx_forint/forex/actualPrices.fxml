@@ -7,6 +7,7 @@
       xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.fx_forint.controller.forex.ActualPrices">
     <Label text="Aktuális árak" styleClass="title" />
+    <TextField fx:id="searchField" promptText="Search..." />
     <TableView fx:id="priceTable" prefHeight="400.0" prefWidth="600.0">
         <columns>
             <TableColumn text="Instrumentum" fx:id="instrumentColumn" />
@@ -14,5 +15,5 @@
             <TableColumn text="Ask Ár" fx:id="askColumn" />
         </columns>
     </TableView>
-    <Button text="Frissítés" onAction="#onHelloButtonClick" styleClass="btn btn-primary" />
+    <Button text="Frissítés" onAction="#onLoadActualPricesButtonClicked" styleClass="btn btn-primary" />
 </VBox>

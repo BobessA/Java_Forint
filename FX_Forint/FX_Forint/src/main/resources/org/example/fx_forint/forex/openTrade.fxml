@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.forex.OpenTradeController">
+<Label text="Open Trade"/>
+<HBox spacing="10">
+    <Label text="Instrument:"/>
+    <TextField fx:id="instrumentField" promptText="EUR_USD"/>
+</HBox>
+<HBox spacing="10">
+    <Label text="Units:"/>
+    <TextField fx:id="unitsField" promptText="100"/>
+</HBox>
+<Button text="Open Trade" onAction="#onOpenPositionButtonClicked"/>
+<Label text="Active Trades"/>
+<TableView fx:id="activeTradesTable" prefHeight="200">
+    <columns>
+        <TableColumn fx:id="idColumn" text="ID" prefWidth="100" />
+        <TableColumn fx:id="instrumentColumn" text="Instrument" prefWidth="100" />
+        <TableColumn fx:id="openTimeColumn" text="Open Time" prefWidth="150" />
+        <TableColumn fx:id="unitsColumn" text="Units" prefWidth="100" />
+        <TableColumn fx:id="priceColumn" text="Price" prefWidth="100" />
+        <TableColumn fx:id="plColumn" text="Unrealized P/L" prefWidth="100" />
+    </columns>
+</TableView>
+</VBox>

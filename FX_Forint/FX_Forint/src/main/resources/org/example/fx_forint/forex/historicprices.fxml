@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="640.0" spacing="20.0"
+      xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.fx_forint.controller.forex.HistoricPrices">
+
+
+    <TableView fx:id="candleTable">
+        <columns>
+            <TableColumn fx:id="timeColumn" text="Time" prefWidth="300" />
+            <TableColumn fx:id="closeColumn" text="Close Price" prefWidth="200" />
+        </columns>
+    </TableView>
+    <Button text="Frissítés" onAction="#onLoadHistoricPricesButtonClicked" />
+
+</VBox>

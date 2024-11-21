@@ -56,12 +56,20 @@ public class MainController {
 
     @FXML
     private void loadMultitaskView() {loadView("/org/example/fx_forint/multitask-view.fxml"); }
-
     @FXML
     private void loadMNBDataToFile() {loadView("/org/example/fx_forint/downloadMNBExchanges-view.fxml");}
     @FXML
     private void loadForexAccountInformations() {loadView("/org/example/fx_forint/forex/account.fxml");}
     @FXML
     private void loadForexActualPrices() {loadView("/org/example/fx_forint/forex/actualPrices.fxml");}
+    @FXML
+    private void loadForexHistoricPrices() {loadView("/org/example/fx_forint/forex/historicPrices.fxml");}
+    @FXML
+    private void loadForexOpenTrade() {loadView("/org/example/fx_forint/forex/openTrade.fxml");}
+    @FXML
+    private void loadForexCloseTrade() {loadView("/org/example/fx_forint/forex/closeTrade.fxml");}
+    @FXML
+    private void loadForexActiveTrades() {loadView("/org/example/fx_forint/forex/activeTrades.fxml");}
+
 
 }

@@ -16,7 +16,6 @@ public class accountController {
     @FXML
     private void initialize() {
         try {
-            // OANDA API Kapcsolat
             Context ctx = new Context(
                     AppConfig.FOREX_API_URL,
                     AppConfig.FOREX_API_TOKEN
@@ -25,7 +24,6 @@ public class accountController {
                     new AccountID(AppConfig.FOREX_API_ACCOUNTID)
             ).getAccount();
 
-            // Az adatok hozzáadása a GridPane-hez
             int row = 0;
 
             addRow("ID", summary.getId().toString(), row++);
@@ -49,7 +47,7 @@ public class accountController {
         Label valueNode = new Label(value);
         valueNode.setStyle("-fx-padding: 5;");
 
-        accountGrid.add(labelNode, 0, row); // 1. oszlop: Label
-        accountGrid.add(valueNode, 1, row); // 2. oszlop: Érték
+        accountGrid.add(labelNode, 0, row);
+        accountGrid.add(valueNode, 1, row); 
     }
 }

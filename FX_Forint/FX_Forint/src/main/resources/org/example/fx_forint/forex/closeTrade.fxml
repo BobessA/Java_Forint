@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.forex.CloseTradeController">
+<Label text="Close Trade"/>
+<HBox spacing="10">
+    <Label text="Trade ID:"/>
+    <TextField fx:id="tradeIdField" promptText="Enter Trade ID"/>
+</HBox>
+<Button text="Close Trade" onAction="#onCloseTradeButtonClick"/>
+<Label text="Active Trades"/>
+<TableView fx:id="activeTradesTable" prefHeight="200">
+    <columns>
+        <TableColumn fx:id="idColumn" text="ID" prefWidth="100" />
+        <TableColumn fx:id="instrumentColumn" text="Instrument" prefWidth="100" />
+        <TableColumn fx:id="openTimeColumn" text="Open Time" prefWidth="150" />
+        <TableColumn fx:id="unitsColumn" text="Units" prefWidth="100" />
+        <TableColumn fx:id="priceColumn" text="Price" prefWidth="100" />
+        <TableColumn fx:id="plColumn" text="Unrealized P/L" prefWidth="100" />
+    </columns>
+</TableView>
+</VBox>

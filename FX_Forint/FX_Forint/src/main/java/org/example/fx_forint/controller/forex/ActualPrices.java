@@ -1,22 +1,25 @@
 package org.example.fx_forint.controller.forex;
 
+import com.oanda.v20.Context;
 import com.oanda.v20.ContextBuilder;
+import com.oanda.v20.account.AccountID;
+import com.oanda.v20.account.AccountInstrumentsRequest;
+import com.oanda.v20.account.AccountInstrumentsResponse;
 import com.oanda.v20.pricing.ClientPrice;
 import com.oanda.v20.pricing.PricingGetRequest;
 import com.oanda.v20.pricing.PricingGetResponse;
-import com.oanda.v20.account.AccountID;
-import com.oanda.v20.Context;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.fx_forint.config.AppConfig;
+import javafx.collections.transformation.FilteredList;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ActualPrices {
     @FXML
@@ -27,38 +30,52 @@ public class ActualPrices {
     private TableColumn<PriceData, Double> bidColumn;
     @FXML
     private TableColumn<PriceData, Double> askColumn;
+    @FXML
+    private TextField searchField;
 
     private final ObservableList<PriceData> prices = FXCollections.observableArrayList();
-
+    private FilteredList<PriceData> filteredPrices;
     @FXML
     public void initialize() {
-        // Oszlopok összekapcsolása az adatokkal
         instrumentColumn.setCellValueFactory(new PropertyValueFactory<>("instrument"));
         bidColumn.setCellValueFactory(new PropertyValueFactory<>("bidPrice"));
         askColumn.setCellValueFactory(new PropertyValueFactory<>("askPrice"));
 
-        // Adatok hozzáadása a táblázathoz
-        priceTable.setItems(prices);
+        filteredPrices = new FilteredList<>(prices, p -> true);
+        priceTable.setItems(filteredPrices);
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredPrices.setPredicate(priceData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                return priceData.getInstrument().toLowerCase().contains(newValue.toLowerCase());
+            });
+        });
     }
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onLoadActualPricesButtonClicked() {
         try {
-            // OANDA API kapcsolódás
             Context ctx = new ContextBuilder(AppConfig.FOREX_API_URL)
                     .setToken(AppConfig.FOREX_API_TOKEN)
                     .setApplication("PricePolling")
                     .build();
             AccountID accountId = AppConfig.FOREX_API_ACCOUNTID;
 
-            // Instrumentumok listája
-            List<String> instruments = new ArrayList<>(Arrays.asList("EUR_USD", "USD_JPY", "GBP_USD", "USD_CHF"));
-            PricingGetRequest request = new PricingGetRequest(accountId, instruments);
-            PricingGetResponse resp = ctx.pricing.get(request);
+            AccountInstrumentsRequest instrumentsRequest = new AccountInstrumentsRequest(accountId);
+            AccountInstrumentsResponse instrumentsResponse = ctx.account.instruments(instrumentsRequest);
+            List<String> instruments = instrumentsResponse.getInstruments()
+                    .stream()
+                    .map(instrument -> instrument.getName().toString())
+                    .collect(Collectors.toList());
 
-            // Táblázat frissítése
-            prices.clear(); // Régi adatok törlése
-            for (ClientPrice price : resp.getPrices()) {
+            PricingGetRequest pricingRequest = new PricingGetRequest(accountId, instruments);
+            PricingGetResponse pricingResponse = ctx.pricing.get(pricingRequest);
+
+            prices.clear();
+            for (ClientPrice price : pricingResponse.getPrices()) {
                 prices.add(new PriceData(
                         price.getInstrument().toString(),
                         price.getBids().get(0).getPrice().doubleValue(),
@@ -70,7 +87,6 @@ public class ActualPrices {
         }
     }
 
-    // Belső osztály az adatok reprezentálására
     public static class PriceData {
         private final String instrument;
         private final Double bidPrice;
