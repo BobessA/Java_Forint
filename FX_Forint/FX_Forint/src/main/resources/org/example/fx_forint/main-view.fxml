@@ -15,8 +15,8 @@
       </Menu>
       <Menu text="MNB adatszolgáltatás">
         <MenuItem onAction="#loadMNBDataToFile" text="Letöltés" />
-        <MenuItem text="Részletes Letöltés" />
-        <MenuItem text="Grafikonos megjelenítés" />
+        <MenuItem onAction="#loadDetailedMNBLoaderToFile" text="Részletes Letöltés" />
+        <MenuItem onAction="#loadMNBChart" text="Grafikonos megjelenítés" />
       </Menu>
       <Menu onAction="#loadMultitaskView" text="Párhuzamos programvégrehajtás">
       <MenuItem onAction="#loadMultitaskView" text="Párhuzamos programvégrehajtás" />

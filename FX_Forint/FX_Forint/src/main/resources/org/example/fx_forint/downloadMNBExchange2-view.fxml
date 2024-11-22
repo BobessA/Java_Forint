@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.Letoltes2Controller">
+    <Label text="Valuta árfolyamok letöltése" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+    <!-- Dátum bevitel -->
+    <HBox spacing="10">
+        <Label text="Hónap (YYYY-MM):" />
+        <TextField fx:id="yearMonthField" promptText="Pl. 2024-10" />
+    </HBox>
+
+    <!-- Devizák listája több választással -->
+    <VBox spacing="10">
+        <Label text="Válasszon devizákat:" />
+        <ListView fx:id="currencyListView" style="-fx-pref-height: 200;"/>
+    </VBox>
+
+    <!-- Letöltés gomb -->
+    <Button text="Letöltés és mentés" onAction="#onDownloadAndSave" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+
+    <!-- Eredmény szöveg -->
+    <Label fx:id="resultText" text="" style="-fx-text-fill: green;" />
+</VBox>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.ChartViewController" spacing="20" alignment="TOP_CENTER">
+    <ComboBox fx:id="currencyComboBox" prefWidth="200" promptText="Válassz devizát"/>
+    <TextField fx:id="startDateField" promptText="Dátum (YYYY-MM)" prefWidth="200"/>
+    <Button text="Árfolyamok megjelenítése" onAction="#onDisplayChart"/>
+
+    <!-- Grafikon -->
+    <LineChart fx:id="lineChart">
+        <xAxis>
+            <CategoryAxis fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="yAxis" />
+        </yAxis>
+    </LineChart>
+</VBox>
