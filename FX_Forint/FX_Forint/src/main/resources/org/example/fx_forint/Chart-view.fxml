@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
+<?import javafx.geometry.Pos?>
 
-<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.ChartViewController" spacing="20" alignment="TOP_CENTER">
-    <ComboBox fx:id="currencyComboBox" prefWidth="200" promptText="Válassz devizát"/>
-    <TextField fx:id="startDateField" promptText="Dátum (YYYY-MM)" prefWidth="200"/>
-    <Button text="Árfolyamok megjelenítése" onAction="#onDisplayChart"/>
+<HBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx_forint.controller.ChartViewController" spacing="20" alignment="CENTER">
+    <!-- Bal oldali panel -->
+    <VBox spacing="10" alignment="TOP_CENTER" prefWidth="300">
+        <!-- Választó panel -->
+        <ComboBox fx:id="currencyComboBox" prefWidth="200" promptText="Válassz devizát" />
+        <TextField fx:id="startDateField" promptText="Dátum (YYYY-MM)" prefWidth="200" />
+        <Button text="Árfolyamok megjelenítése" onAction="#onDisplayChart" prefWidth="200" />
+    </VBox>
 
-    <!-- Grafikon -->
-    <LineChart fx:id="lineChart">
-        <xAxis>
-            <CategoryAxis fx:id="xAxis" />
-        </xAxis>
-        <yAxis>
-            <NumberAxis fx:id="yAxis" />
-        </yAxis>
-    </LineChart>
-</VBox>
+    <!-- Jobb oldali panel a grafikonhoz -->
+    <VBox alignment="CENTER" prefWidth="800">
+        <LineChart fx:id="lineChart" prefWidth="800" prefHeight="600">
+            <xAxis>
+                <CategoryAxis fx:id="xAxis" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" />
+            </yAxis>
+        </LineChart>
+    </VBox>
+</HBox>
