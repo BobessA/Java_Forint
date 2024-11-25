@@ -19,7 +19,7 @@ public class MainApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1040, 600);
         scene.getStylesheets().add(getClass().getResource("/org/example/fx_forint/css/main.css").toExternalForm());
-        stage.setTitle("Hello!");
+        stage.setTitle("Forint");
         stage.setScene(scene);
         stage.show();
 

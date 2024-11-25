@@ -40,6 +40,9 @@ public class Letoltes2Controller {
         } catch (Exception e) {
             showError("Hiba a devizák betöltésekor: " + e.getMessage());
         }
+
+        Tooltip tableTooltip = new Tooltip("CTRL billentyűt nyomva tartva több sor is kijelölhető.");
+        currencyListView.setTooltip(tableTooltip);
     }
 
     @FXML
